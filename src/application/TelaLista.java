@@ -42,14 +42,7 @@ public class TelaLista extends javax.swing.JPanel {
 
         List<Thread> listaThreads = new ArrayList<>();
 
-        List<PeerModelo> peers = new ArrayList<>();
-        PeerModelo peer;
-        for (int i = 0; i < arquivo.getPeer().size(); i++) {
-            peer = new PeerModelo();
-            peer.setIp(arquivo.getPeer().get(i));
-            peer.setDisponibilidade(true);
-            peers.add(peer);
-        }
+        List<PeerModelo> peers =
 
         for (int i = 0; i < vetor_principal.length; i++) {
             vetor_principal[i] = 200;
@@ -145,6 +138,20 @@ public class TelaLista extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnDownloadMouseClicked
 
+
+    public List<PeerModelo> buildPeerModelo(Arquivo arquivo){
+        List<PeerModelo> peers = new ArrayList<>();
+
+        for (int i = 0; i < arquivo.getPeer().size(); i++) {
+            PeerModelo peer = new PeerModelo();
+            peer.setIp(arquivo.getPeer().get(i));
+            peer.setDisponibilidade(true);
+            peers.add(peer);
+        }
+        return peers;
+    }
+
+
     public void threadRun(List<PeerModelo> peers, int jj, int ii, int tamanho_bloco, int tamanho_vetor, int[] vetor_principal) {
         peers.get(jj).setDisponibilidade(false);
         int inicio_bloco = ii;
@@ -188,6 +195,11 @@ public class TelaLista extends javax.swing.JPanel {
             System.out.println("Erro na thread: " + erro.getMessage());
         }
     }
+
+
+
+
+
 
 
 }
